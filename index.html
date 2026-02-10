@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sanjana ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #ffdee9, #b5fffc);
+  overflow: hidden;
+  text-align: center;
+}
+
+/* PASSWORD SCREEN */
+#lockScreen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+  text-align: center;
+}
+
+button {
+  padding: 12px 22px;
+  margin-top: 15px;
+  font-size: 16px;
+  background: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* MAIN CONTENT */
+#content {
+  display: none;
+  padding: 25px;
+}
+
+h1 {
+  color: #e91e63;
+  font-size: 2.5em;
+}
+
+.heart {
+  font-size: 4em;
+  animation: beat 1s infinite;
+}
+
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* GALLERY */
+.gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.gallery img {
+  width: 220px;
+  height: 280px;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* MESSAGE */
+#message {
+  display: none;
+  margin-top: 25px;
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+/* FALLING HEARTS */
+.falling-heart {
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  color: #e91e63;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="lockScreen">
+  <h1>💌 A Surprise for Sanjana</h1>
+  <p>Enter the secret code</p>
+  <input type="password" id="password" placeholder="****">
+  <button onclick="unlock()">Unlock ❤️</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+  <audio id="music" loop>
+    <source src="love.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="heart">❤️</div>
+  <h1>For Sanjana</h1>
+
+  <div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+
+    <!-- Optional -->
+    <!-- <img src="photo4.jpg"> -->
+  </div>
+
+  <button onclick="showMessage()">Open My Heart 💌</button>
+
+  <div id="message">
+    <p>Dear Sanjana,</p>
+    <p>Some people quietly become the most special part of our lives.</p>
+    <p>You are one of those people for me.</p>
+    <p>This is just a small way of saying you are remembered,  
+    valued, and wished happiness — today and always.</p>
+    <p>Happy Valentine's Day 💐</p>
+    <p>— Rann</p>
+  </div>
+</div>
+
+<script>
+function unlock() {
+  const pass = document.getElementById("password").value;
+  if (pass === "0428") {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("content").style.display = "block";
+    startHearts();
+  } else {
+    alert("Wrong code 💔");
+  }
+}
+
+function showMessage() {
+  document.getElementById("message").style.display = "block";
+  document.getElementById("music").play();
+}
+
+function startHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "falling-heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 300);
+}
+</script>
+
+</body>
+</html>
